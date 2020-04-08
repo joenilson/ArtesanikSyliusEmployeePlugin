@@ -5,4 +5,4 @@ artesanik_sylius_employee_plugin:
         employee_id: Employee Id
         employee_office: Employee Office
         employee_location: Employee Position
-        customer_employee_tab: Employee Information
+        employee_information: Employee Information

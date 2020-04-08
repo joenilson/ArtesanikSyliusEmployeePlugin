@@ -4,6 +4,10 @@ acme_sylius_example_shop:
     requirements:
         _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
 
-acme_sylius_example_admin:
+#acme_sylius_example_admin:
+#    resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/admin_routing.yml"
+#    prefix: /admin
+    
+artesanik_sylius_employee_plugin:
     resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/admin_routing.yml"
     prefix: /admin

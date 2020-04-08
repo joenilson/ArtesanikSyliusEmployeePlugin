@@ -1,0 +1,3 @@
+imports:
+    - { resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/services.yml" }
+    - { resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/resources.yml" }
