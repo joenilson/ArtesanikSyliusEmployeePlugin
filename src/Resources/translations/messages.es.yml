@@ -1,0 +1,8 @@
+## YAML Template.
+---
+artesanik_sylius_employee_plugin:
+    ui:
+        employee_id: Código del Trabajador
+        employee_office: Oficina del Trabajador
+        employee_position: Posición del Trabajador
+        customer_employee_tab: Información del Trabajador

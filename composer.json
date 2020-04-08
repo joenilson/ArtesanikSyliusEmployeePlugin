@@ -1,8 +1,8 @@
 {
-    "name": "sylius/plugin-skeleton",
+    "name": "artesanik/sylius-employee-plugin",
     "type": "sylius-plugin",
     "keywords": ["sylius", "sylius-plugin"],
-    "description": "Acme example plugin for Sylius.",
+    "description": "Employee information for Customers plugin for Sylius.",
     "license": "MIT",
     "require": {
         "php": "^7.3",
@@ -37,8 +37,8 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Acme\\SyliusExamplePlugin\\": "src/",
-            "Tests\\Acme\\SyliusExamplePlugin\\": "tests/"
+            "Artesanik\\SyliusEmployeePlugin\\": "src/",
+            "Tests\\Artesanik\\SyliusEmployeePlugin\\": "tests/"
         }
     },
     "autoload-dev": {

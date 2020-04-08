@@ -1,0 +1,8 @@
+## YAML Template.
+---
+artesanik_sylius_employee_plugin:
+    ui:
+        employee_id: Employee Id
+        employee_office: Employee Office
+        employee_location: Employee Position
+        customer_employee_tab: Employee Information

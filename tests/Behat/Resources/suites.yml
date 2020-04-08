@@ -8,3 +8,11 @@ default:
 
             filters:
                 tags: "@greeting_customer"
+        ui_managing_customers:
+            contexts:
+                - sylius.behat.context.hook.doctrine_orm
+                - sylius.behat.context.transform.customer
+                - sylius.behat.context.transform.shared_storage
+                - sylius.behat.context.setup.security
+            filters:
+                tags: "@managing_customers && @ui"
