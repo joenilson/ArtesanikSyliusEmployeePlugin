@@ -19,7 +19,7 @@
  * MA 02110-1301  USA
  */
 
-namespace App\Entity\Customer;
+namespace Artesanik\SyliusEmployeePlugin\Entity\Customer;
 
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Customer\Model\Customer as BaseCustomer;
