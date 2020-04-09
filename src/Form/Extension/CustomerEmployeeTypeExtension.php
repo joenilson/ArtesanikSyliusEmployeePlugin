@@ -22,7 +22,8 @@
 namespace Artesanik\SyliusEmployeePlugin\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Sylius\Bundle\CustomerBundle\Form\Type\CustomerType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -35,17 +36,19 @@ final class CustomerEmployeeTypeExtension extends AbstractTypeExtension
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('employee', CollectionType::class, [
+        $builder->add('employeeid', TextType::class, [
             'label' => 'artesanik_sylius_employee_plugin.ui.employee_id',
-        ])->add('positionid', CollectionType::class, [
+        ])->add('position', TextType::class, [
             'label' => 'artesanik_sylius_employee_plugin.ui.employee_position',
-        ])->add('officeid', CollectionType::class, [
+        ])->add('office', TextType::class, [
             'label' => 'artesanik_sylius_employee_plugin.ui.employee_office',
+        ])->add('company', TextType::class, [
+            'label' => 'artesanik_sylius_employee_plugin.ui.employee_company',
         ]);
     }
 
     public function getExtendedType(): string
     {
-        return CustomerEmployeeType::class;
+        return CustomerType::class;
     }
 }

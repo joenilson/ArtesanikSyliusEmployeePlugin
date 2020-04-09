@@ -33,16 +33,65 @@ trait CustomerEmployeeTrait
      * @ORM\Column(type="string", name="employeeid")
      */
     private $employeeid = '';
-    private $positionid = '';
-    private $officeid = '';
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", name="position")
+     */
+    private $position = '';
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", name="office")
+     */
+    private $office = '';
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", name="company")
+     */
+    private $company = '';
 
     public function setEmployeeid(string $employeeid): void
     {
         $this->employeeid = $employeeid;
     }
 
-    public function hasEmployeeid(): bool
+    public function getEmployeeid(): string
     {
         return $this->employeeid;
+    }
+    
+    public function getPosition(): ?string
+    {
+        return $this->position;
+    }
+    
+    public function setPosition(string $position): void
+    {
+        $this->position = $position;
+    }
+    
+    public function getOffice(): ?string
+    {
+        return $this->office;
+    }
+    
+    public function setOffice(string $office): void
+    {
+        $this->office = $office;
+    }
+    
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+    
+    public function setCompany(string $company): void
+    {
+        $this->company = $company;
     }
 }

@@ -37,11 +37,13 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Artesanik\\SyliusEmployeePlugin\\": "src/",
-            "Tests\\Artesanik\\SyliusEmployeePlugin\\": "tests/"
+            "Artesanik\\SyliusEmployeePlugin\\": "src/"
         }
     },
     "autoload-dev": {
+        "psr-4": {
+             "Tests\\Artesanik\\SyliusEmployeePlugin\\": "tests/"
+        },
         "classmap": ["tests/Application/Kernel.php"]
     },
     "extra": {

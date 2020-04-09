@@ -29,15 +29,19 @@ namespace Artesanik\SyliusEmployeePlugin\Entity;
  */
 interface CustomerEmployeeInterface
 {
-    public function setEmployeeid(bool $employeeid): void;
+    public function setEmployeeid(string $employeeid): void;
 
     public function hasEmployeeid(): bool;
     
-    public function setPositionid(bool $employeeid): void;
+    public function setPosition(string $position): void;
 
-    public function hasPositionid(): bool;
+    public function hasPosition(): bool;
     
-    public function setOfficeid(bool $employeeid): void;
+    public function setOffice(string $office): void;
 
-    public function hasOfficeid(): bool;
+    public function hasOffice(): bool;
+    
+    public function setCompany(string $company): void;
+
+    public function hasCompany(): bool;
 }

@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 /*
  * Copyright (C) 2020 joenilson.
@@ -22,13 +22,14 @@
 namespace Artesanik\SyliusEmployeePlugin\Entity\Customer;
 
 use Doctrine\ORM\Mapping as ORM;
-use Sylius\Component\Customer\Model\Customer as BaseCustomer;
+use Sylius\Component\Core\Model\Customer as BaseCustomer;
 use Sylius\Component\Customer\Model\CustomerInterface;
 
 /**
- * Description of Customer
- *
- * @author joenilson
+ * Class Customer
+ * @package Artesanik\SyliusEmployeePlugin\Entity\Customer
+ * @ORM\Table(name="sylius_customer")
+ * @ORM\Entity
  */
 class Customer extends BaseCustomer implements CustomerInterface 
 {
@@ -36,10 +37,13 @@ class Customer extends BaseCustomer implements CustomerInterface
     private $employeeid;
     
     /** @ORM\Column(type="string", nullable=true) */
-    private $positionid;
+    private $position;
     
     /** @ORM\Column(type="string", nullable=true) */
-    private $officeid;
+    private $office;
+    
+    /** @ORM\Column(type="string", nullable=true) */
+    private $company;
     
 
     public function getEmployeeid(): ?string
@@ -52,23 +56,33 @@ class Customer extends BaseCustomer implements CustomerInterface
         $this->employeeid = $employeeid;
     }
     
-    public function getPositionid(): ?string
+    public function getPosition(): ?string
     {
-        return $this->positionid;
+        return $this->position;
     }
     
-    public function setPositionid(string $positionid): void
+    public function setPosition(string $position): void
     {
-        $this->positionid = $positionid;
+        $this->position = $position;
     }
     
-    public function getOfficeid(): ?string
+    public function getOffice(): ?string
     {
-        return $this->officeid;
+        return $this->office;
     }
     
-    public function setOfficeid(string $officeid): void
+    public function setOffice(string $office): void
     {
-        $this->officeid = $officeid;
+        $this->office = $office;
+    }
+    
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+    
+    public function setCompany(string $company): void
+    {
+        $this->company = $company;
     }
 }

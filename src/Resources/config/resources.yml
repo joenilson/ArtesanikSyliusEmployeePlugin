@@ -3,3 +3,38 @@ sylius_customer:
         customer:
             classes: 
                 model: Artesanik\SyliusEmployeePlugin\Entity\Customer\Customer
+sylius_ui:
+    events:
+        sylius.admin.customer.show.information:
+            blocks:
+                customer_employee_information_header: '@ArtesanikSyliusEmployeePlugin/Resources/views/Customer/Show/Employee/_header.html.twig'
+                customer_employee_information_details: '@ArtesanikSyliusEmployeePlugin/Resources/views/Customer/Show/Employee/_content.html.twig'
+        sylius.shop.account.dashboard.after_information:
+            blocks:
+                customer_employee_information_account: '@ArtesanikSyliusEmployeePlugin/Resources/views/Account/_employee_information.html.twig'
+sylius_grid:
+    grids:
+        sylius_admin_customer:
+            fields:
+                employeeid:
+                    label: artesanik_sylius_employee_plugin.ui.employee_id
+                    type: string
+                    position: 0
+                position:
+                    label: artesanik_sylius_employee_plugin.ui.employee_position
+                    type: string
+                    position: 2
+                office:
+                    label: artesanik_sylius_employee_plugin.ui.employee_office
+                    type: string
+                    position: 3
+                company:
+                    label: artesanik_sylius_employee_plugin.ui.employee_company
+                    type: string
+                    position: 4
+                createdAt:
+                    position: 5
+                enabled:
+                    position: 6
+                verified:
+                    position: 7

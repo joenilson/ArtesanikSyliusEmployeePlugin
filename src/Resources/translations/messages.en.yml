@@ -3,6 +3,7 @@
 artesanik_sylius_employee_plugin:
     ui:
         employee_id: Employee Id
-        employee_office: Employee Office
-        employee_location: Employee Position
+        employee_office: Office
+        employee_position: Position
+        employee_company: Company
         employee_information: Employee Information
