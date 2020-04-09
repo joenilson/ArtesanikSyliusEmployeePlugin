@@ -4,91 +4,51 @@
     </a>
 </p>
 
-<h1 align="center">Plugin Skeleton</h1>
+<h1 align="center">Plugin Employee</h1>
 
-<p align="center">Skeleton for starting Sylius plugins.</p>
+<p align="center">Plugin for company internal stores for employees.</p>
 
 ## Documentation
 
-For a comprehensive guide on Sylius Plugins development please go to Sylius documentation,
-there you will find the <a href="https://docs.sylius.com/en/latest/plugin-development-guide/index.html">Plugin Development Guide</a>, that is full of examples.
+This plugin is simple add four fields to the customer model: EmployeeId, Position, Office and Company
 
-## Quickstart Installation
+This informatión can be edited in the Admin shop interface.
 
-1. Run `composer create-project sylius/plugin-skeleton ProjectName`.
+The user can see this information but isn't allowed to modify this information.
 
-2. From the plugin skeleton root directory, run the following commands:
+That is for securing the information.
 
-    ```bash
-    $ (cd tests/Application && yarn install)
-    $ (cd tests/Application && yarn build)
-    $ (cd tests/Application && bin/console assets:install public -e test)
-    
-    $ (cd tests/Application && bin/console doctrine:database:create -e test)
-    $ (cd tests/Application && bin/console doctrine:schema:create -e test)
-    ```
+It has two translations:
 
-To be able to setup a plugin's database, remember to configure you database credentials in `tests/Application/.env` and `tests/Application/.env.test`.
+- English
+- Spanish
 
-## Usage
+More translations are welcome as PR.
 
-### Running plugin tests
+## Installation
 
-  - PHPUnit
+1. Require plugin with composer
 
-    ```bash
-    $ vendor/bin/phpunit
-    ```
+```
+composer require artesanik/sylius-employee-plugin
+```
 
-  - PHPSpec
+2. Copy Sylius templates overridden in plugin to your templates directory (e.g templates/bundles/):
 
-    ```bash
-    $ vendor/bin/phpspec run
-    ```
+```
+mkdir -p templates/bundles/SyliusAdminBundle/
+cp -R vendor/artesanik/sylius-employee-plugin/src/Resources/views/SyliusAdminBundle/* templates/bundles/SyliusAdminBundle/
+```
 
-  - Behat (non-JS scenarios)
+Copy plugin migrations to your migrations directory (e.g. src/Migrations) and apply them to your database:
 
-    ```bash
-    $ vendor/bin/behat --tags="~@javascript"
-    ```
+```
+cp -R vendor/sylius/admin-order-creation-plugin/migrations/* src/Migrations
+bin/console doctrine:migrations:migrate
+```
 
-  - Behat (JS scenarios)
- 
-    1. Download [Chromedriver](https://sites.google.com/a/chromium.org/chromedriver/)
-    
-    2. Download [Selenium Standalone Server](https://www.seleniumhq.org/download/).
-    
-    2. Run Selenium server with previously downloaded Chromedriver:
-    
-        ```bash
-        $ java -Dwebdriver.chrome.driver=chromedriver -jar selenium-server-standalone.jar
-        ```
-        
-    3. Run test application's webserver on `localhost:8080`:
-    
-        ```bash
-        $ (cd tests/Application && bin/console server:run localhost:8080 -d public -e test)
-        ```
-    
-    4. Run Behat:
-    
-        ```bash
-        $ vendor/bin/behat --tags="@javascript"
-        ```
+## TODO
 
-### Opening Sylius with your plugin
-
-- Using `test` environment:
-
-    ```bash
-    $ (cd tests/Application && bin/console sylius:fixtures:load -e test)
-    $ (cd tests/Application && bin/console server:run -d public -e test)
-    ```
-    
-- Using `dev` environment:
-
-    ```bash
-    $ (cd tests/Application && bin/console sylius:fixtures:load -e dev)
-    $ (cd tests/Application && bin/console server:run -d public -e dev)
-    ```
-# ArtesanikSyliusEmployeePlugin
+[] Add EmployeeId to Order
+[] Add employee purchase budget
+[] Add compatibility with SyliusLdapPlugin
