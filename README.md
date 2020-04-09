@@ -43,7 +43,7 @@ cp -R vendor/artesanik/sylius-employee-plugin/src/Resources/views/SyliusAdminBun
 Copy plugin migrations to your migrations directory (e.g. src/Migrations) and apply them to your database:
 
 ```
-cp -R vendor/sylius/admin-order-creation-plugin/migrations/* src/Migrations
+cp -R vendor/artesanik/sylius-employee-plugin/migrations/* src/Migrations
 bin/console doctrine:migrations:migrate
 ```
 
