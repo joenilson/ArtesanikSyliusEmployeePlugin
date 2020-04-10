@@ -5,6 +5,9 @@ sylius_customer:
                 model: Artesanik\SyliusEmployeePlugin\Entity\Customer\Customer
 sylius_ui:
     events:
+        sylius.admin.customer.update.form:
+            blocks:
+                customer_employee_information_fields: '@ArtesanikSyliusEmployeePlugin/Resources/views/Customer/Form/Employee/_form.html.twig'
         sylius.admin.customer.show.information:
             blocks:
                 customer_employee_information_header: '@ArtesanikSyliusEmployeePlugin/Resources/views/Customer/Show/Employee/_header.html.twig'

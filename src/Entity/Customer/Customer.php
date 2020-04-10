@@ -33,16 +33,16 @@ use Sylius\Component\Customer\Model\CustomerInterface;
  */
 class Customer extends BaseCustomer implements CustomerInterface 
 {
-    /** @ORM\Column(type="string", nullable=true) */
+    /** @ORM\Column(type="string", length=32, nullable=true) */
     private $employeeid;
     
-    /** @ORM\Column(type="string", nullable=true) */
+    /** @ORM\Column(type="string", length=120, nullable=true) */
     private $position;
     
-    /** @ORM\Column(type="string", nullable=true) */
+    /** @ORM\Column(type="string", length=120, nullable=true) */
     private $office;
     
-    /** @ORM\Column(type="string", nullable=true) */
+    /** @ORM\Column(type="string", length=120, nullable=true) */
     private $company;
     
 

@@ -47,8 +47,12 @@ cp -R vendor/artesanik/sylius-employee-plugin/migrations/* src/Migrations
 bin/console doctrine:migrations:migrate
 ```
 
+In config/packages/_sylius add the import for the plugin
+
+    - { resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/config.yml" }
+
 ## TODO
 
-[] Add EmployeeId to Order
-[] Add employee purchase budget
-[] Add compatibility with SyliusLdapPlugin
+[ ] Add EmployeeId to Order
+[ ] Add employee purchase budget
+[ ] Add compatibility with SyliusLdapPlugin
