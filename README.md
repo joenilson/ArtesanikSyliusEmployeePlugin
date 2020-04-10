@@ -67,6 +67,6 @@ bin/console doctrine:migrations:migrate
 
 ## TODO
 
-[ ] Add EmployeeId to Order
-[ ] Add employee purchase budget
-[ ] Add compatibility with SyliusLdapPlugin
+- [ ] Add EmployeeId to Order
+- [ ] Add employee purchase budget
+- [ ] Add compatibility with SyliusLdapPlugin
