@@ -33,23 +33,37 @@ More translations are welcome as PR.
 composer require artesanik/sylius-employee-plugin
 ```
 
-2. Copy Sylius templates overridden in plugin to your templates directory (e.g templates/bundles/):
+2. Register the Plugin in config/bundles.php:
 
 ```
-mkdir -p templates/bundles/SyliusAdminBundle/
-cp -R vendor/artesanik/sylius-employee-plugin/src/Resources/views/SyliusAdminBundle/* templates/bundles/SyliusAdminBundle/
+....
+Artesanik\SyliusEmployeePlugin\ArtesanikSyliusEmployeePlugin::class => ['all' => true],
+....
 ```
 
-Copy plugin migrations to your migrations directory (e.g. src/Migrations) and apply them to your database:
+3. create a file sylius_employee_plugin.yaml 
+
+```
+cd config/packages
+touch sylius_employee_plugin.yaml
+nano sylius_employee_plugin.yaml
+```
+
+- and put this line inside:
+
+```
+imports:
+    - { resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/config.yml" }
+```
+
+4. Copy plugin migrations to your migrations directory (e.g. src/Migrations) and apply them to your database:
 
 ```
 cp -R vendor/artesanik/sylius-employee-plugin/migrations/* src/Migrations
 bin/console doctrine:migrations:migrate
 ```
 
-In config/packages/_sylius add the import for the plugin
 
-    - { resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/config.yml" }
 
 ## TODO
 
