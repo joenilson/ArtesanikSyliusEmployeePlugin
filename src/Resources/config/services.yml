@@ -1,7 +1,90 @@
-# src/Resources/config/services.yml
-
+parameters:
+    artesanik_sylius_employee_plugin.form.type.limit.validation_groups: [ 'artesanik_sylius_employee_limit_vg' ]
 services:
+    artesanik_sylius_employee_plugin.block_event_listener.admin.layout.javascripts:
+        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        arguments:
+            - '@@ArtesanikSyliusEmployeePlugin/Admin/_javascripts.html.twig'
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.admin.layout.javascripts, method: onBlockEvent }
     artesanik_sylius_employee_plugin.form.extension.type.customer_employee_type:
         class: Artesanik\SyliusEmployeePlugin\Form\Extension\CustomerEmployeeTypeExtension
         tags:
             - { name: form.type_extension, extended_type: Sylius\Bundle\CustomerBundle\Form\Type\CustomerType }
+    artesanik_sylius_employee_plugin.listener.admin.menu_builder:
+        class: Artesanik\SyliusEmployeePlugin\Menu\AdminMenuListener
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.main, method: addAdminMenuItems }
+    artesanik_sylius_employee.form.type.limit:
+        class: Artesanik\SyliusEmployeePlugin\Form\Type\EmployeeLimitType
+        arguments:
+            - '%artesanik_sylius_employee.model.limit.class%'
+            - '%artesanik_sylius_employee_plugin.form.type.limit.validation_groups%'
+        tags:
+            - { name: form.type }
+    artesanik_sylius_employee.form.type.limittype:
+        class: Artesanik\SyliusEmployeePlugin\Form\Type\LimitTypeType
+        tags:
+            - { name: form.type }
+    artesanik_sylius_employee.form.type.periodicity:
+        class: Artesanik\SyliusEmployeePlugin\Form\Type\PeriodicityType
+        tags:
+            - { name: form.type }
+    artesanik_sylius_employee.form.type.channelchoice:
+        class: Artesanik\SyliusEmployeePlugin\Form\Type\ChannelChoiceType
+        arguments:
+            - '@sylius.repository.channel'
+            - '@artesanik_sylius_employee.form.datatransformer.channeltointeger'
+        tags:
+            - { name: form.type }
+    artesanik_sylius_employee.form.datatransformer.channeltointeger:
+        class: Artesanik\SyliusEmployeePlugin\Form\DataTransformer\ChannelToIntegerTransformer
+        arguments:
+            - '@sylius.repository.channel'
+        tags:
+            - { name: form.type }
+    artesanik_sylius_employee.form.datatransformer.limittointeger:
+        class: Artesanik\SyliusEmployeePlugin\Form\DataTransformer\LimitToIntegerTransformer
+        arguments:
+            - '@artesanik_sylius_employee.repository.limit'
+        tags:
+            - { name: form.type }
+    artesanik_sylius_employee.type.limit:
+        class: Artesanik\SyliusEmployeePlugin\Form\Type\LimitType
+        arguments: 
+            - '@artesanik_sylius_employee.repository.limit'
+            - '@artesanik_sylius_employee.form.datatransformer.limittointeger'
+        tags:
+            - { name: form.type }
+    artesanik_sylius_employee_plugin.controller.admin.mapping:
+        class: Artesanik\SyliusEmployeePlugin\Controller\Admin\MappingController
+        autowire: false
+        public: true
+        arguments:
+            - '@twig'
+            - '@sylius.repository.customer'
+            - '@artesanik_sylius_employee.repository.limit'
+            - '@translator'
+            - '@session'
+    artesanik_sylius_employee_plugin.controller.limit:
+        class: Artesanik\SyliusEmployeePlugin\Controller\LimitController
+        autowire: true
+        public: true
+            - '@twig'
+            - '@sylius.repository.customer'
+            - '@artesanik_sylius_employee.repository.limit'
+            - '@translator'
+            - '@session'
+    artesanik_sylius_employee_plugin.listener.limit_verify_after_adding_to_cart:
+        class: Artesanik\SyliusEmployeePlugin\EventListener\LimitVerifyAfterAddingToCartListener
+        arguments:
+            - '@router'
+            - '@session'
+            - '@translator'
+            - '@service_container'
+            - '@sylius.context.customer'
+            - '@artesanik_sylius_employee.repository.limit'
+        tags:
+            - { name: kernel.event_listener, event: sylius.order_item.post_add, method: onSuccessfulAddToCart }
+            - { name: kernel.event_listener, event: sylius.cart_change, method: onCartUpdate }
+            

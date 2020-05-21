@@ -1,0 +1,90 @@
+admin_employee_limit:
+    resource: |
+        alias: artesanik_sylius_employee.limit
+        path: employeelimit
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        except: ['show']
+        redirect: index
+        grid: artesanik_sylius_employee_plugin_admin_limit
+        permission: true
+        vars:
+            all:
+                header: artesanik_sylius_employee.ui.admin_header
+                subheader: artesanik_sylius_employee.ui.admin_subheader
+            index:
+                icon: block layout
+    type: sylius.resource
+    prefix: admin
+admin_employee_limit_mapping:
+    resource: |
+        alias: artesanik_sylius_employee.mapping
+        path: employeemapping
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        only: ['show','index']
+        redirect: show
+        grid: artesanik_sylius_employee_plugin_admin_mapping_grid
+        permission: true
+        vars:
+            all:
+                header: artesanik_sylius_employee.ui.admin_mapping_header
+                subheader: artesanik_sylius_employee.ui.admin_mapping_subheader
+            index:
+                icon: block layout
+    type: sylius.resource
+    prefix: admin
+admin_employee_limit_assign:
+    resource: |
+        alias: artesanik_sylius_employee.assign
+        path: employeeassign
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        only: ['show', 'index']
+        redirect: index
+        grid: artesanik_sylius_employee_plugin_admin_assign_grid
+        permission: true
+        vars:
+            all:
+                header: artesanik_sylius_employee.ui.admin_assign_header
+                subheader: artesanik_sylius_employee.ui.admin_assign_subheader
+            index:
+                icon: block layout
+    type: sylius.resource
+    prefix: admin
+artesanik_sylius_employee_admin_limit_delete:
+    path: /admin/employeelimit/assign
+    defaults:
+        _controller: artesanik_sylius_employee_plugin.controller.admin.mapping
+        _sylius:
+            repository:
+                method: findById
+                arguments: [$ids]
+    methods: [GET, DELETE]
+    prefix: admin   
+artesanik_sylius_employee_admin_mapping_create:
+    path: /admin/employeelimit/assign
+    defaults:
+        _controller: artesanik_sylius_employee_plugin.controller.admin.mapping
+        _sylius:
+            repository:
+                method: findById
+                arguments: [$ids]
+    methods: [GET, DELETE]
+    prefix: admin
+artesanik_sylius_employee_partial_limit_balance:
+    path: /partial/customer/limitbalance
+    methods: [GET]
+    defaults:
+        _controller: artesanik_sylius_employee_plugin.controller.limit:limitBalanceAction
+        _sylius:
+            template: '@ArtesanikSyliusEmployeePlugin/Customer/Show/Employee/Summary/_limitBalance.html.twig'
+            repository:
+                method: countOrderItemsByLimit
+                arguments: 
+                    - "expr:service('sylius.context.channel').getChannel()"
+                    - $customer
+            criteria: false
+        paginate: false
+        limit: 100
+    

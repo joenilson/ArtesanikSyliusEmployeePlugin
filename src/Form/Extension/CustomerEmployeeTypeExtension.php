@@ -22,10 +22,11 @@
 namespace Artesanik\SyliusEmployeePlugin\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Sylius\Bundle\CustomerBundle\Form\Type\CustomerType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Artesanik\SyliusEmployeePlugin\Form\Type\LimitType;
 
 /**
  * Description of CustomerEmployeeTypeExtension
@@ -37,13 +38,24 @@ final class CustomerEmployeeTypeExtension extends AbstractTypeExtension
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('employeeid', TextType::class, [
-            'label' => 'artesanik_sylius_employee_plugin.ui.employee_id',
+            'label' => 'artesanik_sylius_employee.ui.employee_id',
         ])->add('position', TextType::class, [
-            'label' => 'artesanik_sylius_employee_plugin.ui.employee_position',
+            'label' => 'artesanik_sylius_employee.ui.employee_position',
+        ])->add('department', TextType::class, [
+            'label' => 'artesanik_sylius_employee.ui.employee_department',
         ])->add('office', TextType::class, [
-            'label' => 'artesanik_sylius_employee_plugin.ui.employee_office',
+            'label' => 'artesanik_sylius_employee.ui.employee_office',
         ])->add('company', TextType::class, [
-            'label' => 'artesanik_sylius_employee_plugin.ui.employee_company',
+            'label' => 'artesanik_sylius_employee.ui.employee_company',
+        ])->add('limitpurchase', CheckboxType::class, [
+            'label' => 'artesanik_sylius_employee.ui.employee_limitpurchase',
+        ])->add('limitid', LimitType::class, [
+            'label' => 'artesanik_sylius_employee.ui.employee_limitid',
+            'required' => false,
+            'placeholder' => 'artesanik_sylius_employee.ui.employee_limitid_choose',
+        ])
+        ->add('limitexcluded', CheckboxType::class, [
+            'label' => 'artesanik_sylius_employee.ui.employee_limitexcluded',
         ]);
     }
 

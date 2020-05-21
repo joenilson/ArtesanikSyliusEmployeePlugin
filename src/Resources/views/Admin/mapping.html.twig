@@ -1,0 +1,23 @@
+
+{% extends 'ArtesanikSyliusEmployeePlugin::layout.html.twig' %}
+
+{%  block title %}{{ 'artesanik_sylius_employee.ui.limits'|trans }} 
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="ui segment">
+    {{ message }}
+    {{ dump(limit_list) }}
+    {% if limit_list %}
+    
+    {% else %}
+
+    {% endif %}
+    </div>
+{% endblock %}

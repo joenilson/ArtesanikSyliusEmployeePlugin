@@ -3,41 +3,41 @@ sylius_customer:
         customer:
             classes: 
                 model: Artesanik\SyliusEmployeePlugin\Entity\Customer\Customer
+                repository: Artesanik\SyliusEmployeePlugin\Repository\CustomerRepository
+sylius_order:
+    resources:
+        order:
+            classes:
+                repository: Artesanik\SyliusEmployeePlugin\Repository\OrderRepository
+sylius_resource:
+    resources:
+        artesanik_sylius_employee.limit:
+            classes:
+                model: Artesanik\SyliusEmployeePlugin\Entity\Employee\Limit
+                form: Artesanik\SyliusEmployeePlugin\Form\Type\EmployeeLimitType
+                repository: Artesanik\SyliusEmployeePlugin\Repository\Employee\LimitRepository
+        artesanik_sylius_employee.mapping:
+            classes:
+                model: Artesanik\SyliusEmployeePlugin\Entity\Customer\Customer
+                repository: Artesanik\SyliusEmployeePlugin\Repository\CustomerRepository
+        artesanik_sylius_employee.assign:
+            classes:
+                model: Artesanik\SyliusEmployeePlugin\Entity\Customer\Customer
+                repository: Artesanik\SyliusEmployeePlugin\Repository\CustomerRepository
 sylius_ui:
     events:
-        sylius.admin.customer.update.form:
+        sylius.admin.customer.create.form:
             blocks:
                 customer_employee_information_fields: '@ArtesanikSyliusEmployeePlugin/Resources/views/Customer/Form/Employee/_form.html.twig'
-        sylius.admin.customer.show.information:
+        sylius.admin.customer.show.address:
             blocks:
+                customer_limit_information_summary: '@ArtesanikSyliusEmployeePlugin/Resources/views/Customer/Show/Employee/_summary.html.twig'
                 customer_employee_information_header: '@ArtesanikSyliusEmployeePlugin/Resources/views/Customer/Show/Employee/_header.html.twig'
                 customer_employee_information_details: '@ArtesanikSyliusEmployeePlugin/Resources/views/Customer/Show/Employee/_content.html.twig'
         sylius.shop.account.dashboard.after_information:
             blocks:
                 customer_employee_information_account: '@ArtesanikSyliusEmployeePlugin/Resources/views/Account/_employee_information.html.twig'
-sylius_grid:
-    grids:
-        sylius_admin_customer:
-            fields:
-                employeeid:
-                    label: artesanik_sylius_employee_plugin.ui.employee_id
-                    type: string
-                    position: 0
-                position:
-                    label: artesanik_sylius_employee_plugin.ui.employee_position
-                    type: string
-                    position: 2
-                office:
-                    label: artesanik_sylius_employee_plugin.ui.employee_office
-                    type: string
-                    position: 3
-                company:
-                    label: artesanik_sylius_employee_plugin.ui.employee_company
-                    type: string
-                    position: 4
-                createdAt:
-                    position: 5
-                enabled:
-                    position: 6
-                verified:
-                    position: 7
+        sylius.shop.layout.header:
+            blocks:
+                customer_limit_shop_information_header_label: '@ArtesanikSyliusEmployeePlugin/Resources/views/Shop/Header/_limitStatistics.html.twig'
+

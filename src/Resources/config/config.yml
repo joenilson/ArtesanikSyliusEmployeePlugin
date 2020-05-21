@@ -1,3 +1,4 @@
 imports:
-    - { resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/services.yml" }
     - { resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/resources.yml" }
+    - { resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/services.yml" }
+    - { resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/grids.yml" }

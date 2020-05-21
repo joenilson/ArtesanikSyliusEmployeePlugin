@@ -35,12 +35,6 @@
                 </div>
             {% endif %}
         </div>
-        <div class="ui segment">
-            <h4 class="ui dividing header">{{ 'artesanik_sylius_employee_plugin.ui.employee_information'|trans }}</h4>
-            {{ form_row(form.employeeid) }}
-            {{ form_row(form.position) }}
-            {{ form_row(form.office) }}
-            {{ form_row(form.company) }}
-        </div>
+        {% include '@ArtesanikSyliusEmployeePlugin/Customer/Form/Employee/_limitForm.html.twig' %}
     </div>
 </div>

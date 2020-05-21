@@ -3,7 +3,7 @@
 parameters:
     locale: en_US
 services:
-    artesanik_sylius_employee_plugin.form.extension.type.customer_employee_type:
-        class: Artesanik\SyliusEmployeePlugin\Form\Extension\CustomerEmployeeTypeExtension
-        tags:
-            - { name: form.type_extension, extended_type: Sylius\Bundle\CustomerBundle\Form\Type\CustomerType }
+#    artesanik_sylius_employee_plugin.form.extension.type.customer_employee_type:
+#        class: Artesanik\SyliusEmployeePlugin\Form\Extension\CustomerEmployeeTypeExtension
+#        tags:
+#            - { name: form.type_extension, extended_type: Sylius\Bundle\CustomerBundle\Form\Type\CustomerType }

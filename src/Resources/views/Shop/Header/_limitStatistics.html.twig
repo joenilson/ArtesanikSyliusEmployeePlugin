@@ -1,0 +1,42 @@
+{% if sylius.customer and sylius.customer.limitid %}
+<div class="ui mini four statistics">
+    <div class="statistic">
+        <div class="value">
+            {{ sylius.customer.limitid }}
+        </div>
+        <div class="label">
+            {{ 'artesanik_sylius_employee.ui.limit_applied' | trans }}
+        </div>
+    </div>
+    <div class="statistic">
+        <div class="value">
+            <i class="{% if sylius.customer.limitid.limittype == 'money' %} 
+                money bill alternate 
+            {% else %} 
+                boxes 
+            {% endif %} 
+             icon"></i>
+            {{ ('artesanik_sylius_employee.ui.limittype_' ~ sylius.customer.limitid.limittype) | trans }}
+        </div>
+        <div class="label">
+            {{ 'artesanik_sylius_employee.ui.employee_limittype' | trans }}
+        </div>
+    </div>
+    <div class="statistic">
+        <div class="value">
+            {{ ('artesanik_sylius_employee.ui.periodicity.' ~ sylius.customer.limitid.periodicity) | trans }}
+        </div>
+        <div class="label">
+            {{ 'artesanik_sylius_employee.ui.employee_limitperiodicity' | trans }}
+        </div>
+    </div>
+    {{ 
+        render(
+            url('artesanik_sylius_employee_partial_limit_balance', {
+                'customer': sylius.customer.id,
+                'template': '@ArtesanikSyliusEmployeePlugin/Customer/Show/Employee/Summary/_limitBalance.html.twig'
+            })
+        ) 
+    }}
+</div>
+{% endif %}

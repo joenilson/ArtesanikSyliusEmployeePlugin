@@ -1,0 +1,13 @@
+
+<div class=" statistic">
+    <div class="value">
+        <div class="ui {{ expenses.color }} label">{{ expenses.result|number_format }}</div>
+        /
+        <div class="ui black label">{{ expenses.limitvalue|number_format }}</div>
+    </div>
+    <div class="label">
+        {{ 'artesanik_sylius_employee.ui.your_expenses'|trans }} 
+        /
+        {{ 'artesanik_sylius_employee.ui.limit_label' | trans }}
+    </div>
+</div>

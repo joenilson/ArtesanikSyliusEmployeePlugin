@@ -1,0 +1,9 @@
+{% import '@SyliusAdmin/Macro/breadcrumb.html.twig' as breadcrumb %}
+{% set breadcrumbs = [
+    { label: 'sylius.ui.administration'|trans, url: path('sylius_admin_dashboard') },
+    { label: 'artesanik_sylius_employee.ui.limits'|trans, url: path('artesanik_sylius_employee_admin_limit_index') },
+    { label: 'artesanik_sylius_employee.ui.mapping'|trans }
+]
+%}
+
+{{ breadcrumb.crumble(breadcrumbs) }}

@@ -1,6 +1,6 @@
 <div class="item">
     <h2 class="ui dividing header">
-        <div class="sub header">{{ 'artesanik_sylius_employee_plugin.ui.employee_information'|trans }}</div>
+        <div class="sub header">{{ 'artesanik_sylius_employee.ui.employee_information'|trans }}</div>
     </h2>
     <div class="ui attached segment" id="employee-information">
         <div id="employee-id">
@@ -8,6 +8,9 @@
         </div>
         <div id="employee-position">
             <i class="address card icon"></i> {{ customer.position }}
+        </div>
+        <div id="employee-department">
+            <i class="address card icon"></i> {{ customer.department }}
         </div>
         <div id="employee-office">
             <i class="map marker alternate icon"></i> {{ customer.office }}

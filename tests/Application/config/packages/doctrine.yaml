@@ -8,7 +8,15 @@ parameters:
 doctrine:
     dbal:
         driver: 'pdo_mysql'
-        server_version: '5.7'
+        #server_version: '5.7'
         charset: UTF8
 
         url: '%env(resolve:DATABASE_URL)%'
+    orm:
+        mappings:
+            Artesanik\SyliusEmployeePlugin:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/../../src/Entity'
+                prefix: 'Artesanik\SyliusEmployeePlugin\Entity'
+                alias: Artesanik\SyliusEmployeePlugin

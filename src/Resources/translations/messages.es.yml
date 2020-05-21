@@ -1,9 +1,68 @@
-## YAML Template.
----
-artesanik_sylius_employee_plugin:
+artesanik_sylius_employee:
     ui:
+        limits: Limites de Compra de Empleados
+        limit: Limite de Compra de Empleados
+        limit_label: Limite 
+        limit_applied: Tiene un límite de compras aplicado
+        limit_exceeded: Ha llegado al limite de compras, se hicieron algunos ajustes a su pedido, el valor original era %original_value%, el nuevo valor es %new_value%.
+        not_black: Campo no puede estar vacio
+        min_length: El mínimo de caracteres debe ser %s
+        max_length: El máximo de caracteres debe ser %s
+        your_expenses: Tu gasto
+        limittype_money: en dinero
+        limittype_quantity: en cantidad
+        limittype:
+            money: El límite es por un monto máximo de <div class="ui blue label">%limitvalue%</div> en la compra
+            quantity: El límite es por una cantidad máxima de <div class="ui blue label">%limitvalue%</div> unidades en la compra
+        show_employees: Mostrar Empleados
+        assign_employees: Asignar Empleados
+        employee_limit_summary: Información de Limites
+        employee_limit_header: Limite
+        employee_limits_header: Limites
+        employee_limits_false: No tiene limites para realizar compras
         employee_id: Código
         employee_office: Oficina
         employee_position: Posición
+        employee_department: Departamento
         employee_company: Empresa
         employee_information: Información del Trabajador
+        employee_limitpurchase: Límite de Compra
+        employee_limittype: Tipo de Límite
+        employee_limitchannel: Canal
+        employee_limitperiodicity: Periodicidad
+        employee_limitisactive: Activo
+        employee_limitvalue: Valor del Límite
+        employee_limitexcluded: Excluido del Límite?
+        employee_limitcreatedat: Registro creado el
+        employee_limitmodifiedat: Registro modificado el 
+        employee_limitid: Id Límite
+        employee_limitdescription: Descripción
+        employee_limitid_choose: Elije un limite
+        employee_limitchannel_choose: Elije un canal
+        employee_limitperiodicity_choose: Elije la periodicidad
+        admin_header: Limites de Compra para empleados
+        admin_subheader: Pagina de administración de los limites de compra para empleados
+        admin_mapping_header: Mapeo de Limites de compra
+        admin_mapping_subheader: Mapeos de Limite de compra
+        admin_assign_header: Asignación de Límites de Compra
+        admin_assign_subheader: Asignaciones de Límites de Compra
+        select_limitid: Elegir un límite de compra
+        showmapping: Ver Asignaciones
+        removemapping: Remover
+        assignmapping: Asignar
+        mapping: Mapeo
+        mappings: Mapeos
+        assign: Asignación
+        assigns: Asignaciones
+        info_empty_mapping: No hay empleados asignados a este límite, asignelos aquí.
+        info_success_mapping: Clientes mapeados al limite exitosamente.
+        periodicity_description: El limite tiene una periodicidad <div class="ui blue label">%periodicityvalue%</div> de control
+        periodicity:
+            daily: Diaria
+            weekly: Semanal
+            biweekly: Quincenal
+            monthly: Mensual
+            bimonthly: Bimensual
+            quarterly: Trimestral
+            biannual: Semestral
+            annual: Anual

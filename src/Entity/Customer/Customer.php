@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
  * Copyright (C) 2020 joenilson.
@@ -23,37 +23,56 @@ namespace Artesanik\SyliusEmployeePlugin\Entity\Customer;
 
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Core\Model\Customer as BaseCustomer;
-use Sylius\Component\Customer\Model\CustomerInterface;
+use Sylius\Component\Core\Model\CustomerInterface;
+use Artesanik\SyliusEmployeePlugin\Entity\Employee\Limit;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * Class Customer
  * @package Artesanik\SyliusEmployeePlugin\Entity\Customer
- * @ORM\Table(name="sylius_customer")
+ * @ORM\Table(name="`sylius_customer`")
  * @ORM\Entity
  */
-class Customer extends BaseCustomer implements CustomerInterface 
+class Customer extends BaseCustomer implements CustomerInterface
 {
     /** @ORM\Column(type="string", length=32, nullable=true) */
-    private $employeeid;
+    protected $employeeid;
     
     /** @ORM\Column(type="string", length=120, nullable=true) */
-    private $position;
+    protected $position;
     
     /** @ORM\Column(type="string", length=120, nullable=true) */
-    private $office;
+    protected $department;
     
     /** @ORM\Column(type="string", length=120, nullable=true) */
-    private $company;
+    protected $office;
     
+    /** @ORM\Column(type="string", length=120, nullable=true) */
+    protected $company;
+
+    /** @ORM\Column(type="boolean", options={"default":"0"}) */
+    protected $limitpurchase;
+
+    /**
+    * @ManyToOne(targetEntity="Artesanik\SyliusEmployeePlugin\Entity\Employee\Limit")
+    * @JoinColumn(name="limitid",                                                     referencedColumnName="id")
+    **/
+    protected $limitid;
+    
+    /** @ORM\Column(type="boolean", options={"default":"0"}) */
+    protected $limitexcluded;
 
     public function getEmployeeid(): ?string
     {
         return $this->employeeid;
     }
 
-    public function setEmployeeid(string $employeeid): void
+    public function setEmployeeid(string $employeeid): self
     {
         $this->employeeid = $employeeid;
+
+        return $this;
     }
     
     public function getPosition(): ?string
@@ -61,9 +80,23 @@ class Customer extends BaseCustomer implements CustomerInterface
         return $this->position;
     }
     
-    public function setPosition(string $position): void
+    public function setPosition(string $position): self
     {
         $this->position = $position;
+
+        return $this;
+    }
+    
+    public function getDepartment(): ?string
+    {
+        return $this->department;
+    }
+    
+    public function setDepartment(string $department): self
+    {
+        $this->department = $department;
+
+        return $this;
     }
     
     public function getOffice(): ?string
@@ -71,18 +104,58 @@ class Customer extends BaseCustomer implements CustomerInterface
         return $this->office;
     }
     
-    public function setOffice(string $office): void
+    public function setOffice(string $office): self
     {
         $this->office = $office;
+
+        return $this;
     }
     
     public function getCompany(): ?string
     {
         return $this->company;
     }
-    
-    public function setCompany(string $company): void
+
+    public function setCompany(string $company): self
     {
         $this->company = $company;
+
+        return $this;
+    }
+ 
+    public function getLimitpurchase(): ?bool
+    {
+        return $this->limitpurchase;
+    }
+    
+    public function setLimitpurchase(bool $limitpurchase): self
+    {
+        $this->limitpurchase = $limitpurchase;
+
+        return $this;
+    }
+    
+    public function getLimitid(): ?Limit
+    {
+        return $this->limitid;
+    }
+    
+    public function setLimitid(?Limit $limitid): self
+    {
+        $this->limitid = $limitid;
+
+        return $this;
+    }
+    
+    public function getLimitExcluded(): ?bool
+    {
+        return $this->limitexcluded;
+    }
+    
+    public function setLimitExcluded(bool $limitexcluded): self
+    {
+        $this->limitexcluded = $limitexcluded;
+
+        return $this;
     }
 }

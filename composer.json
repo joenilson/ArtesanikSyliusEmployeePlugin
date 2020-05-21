@@ -6,7 +6,6 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
-
         "sylius/sylius": "^1.7"
     },
     "require-dev": {
@@ -32,7 +31,10 @@
         "symfony/dotenv": "^4.3",
         "symfony/intl": "^3.4|^4.3",
         "symfony/web-profiler-bundle": "^3.4|^4.3",
-        "symfony/web-server-bundle": "^3.4|^4.3"
+        "symfony/web-server-bundle": "^3.4|^4.3",
+        "symfony/maker-bundle": "^1.15",
+        "symfony/console": "^4.4.7",
+        "cweagans/composer-patches": "^1.6"
     },
     "prefer-stable": true,
     "autoload": {
@@ -48,7 +50,12 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.6-dev"
+            "dev-master": "0.2-dev"
+        },
+        "patches": {
+            "symfony/maker-bundle": {
+                "Provide flag to force annotation in make entity command": "https://raw.githubusercontent.com/vklux/maker-bundle-force-annotation/master/maker-force-annotation-flag.patch"
+            }
         }
     }
 }

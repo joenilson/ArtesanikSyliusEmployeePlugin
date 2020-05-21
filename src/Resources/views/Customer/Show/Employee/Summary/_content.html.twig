@@ -1,0 +1,49 @@
+<div class="ui attached segment" id="employee-limit-summary">
+
+{% if not customer.limitid %}
+    <div id="employee-limitid">
+        <i class="lock open icon"></i> 
+        {{ 'artesanik_sylius_employee.ui.employee_limits_false'|trans }}
+    </div>
+{% else %}
+    <div id="employee-limitid">
+        <i class="lock icon"></i> {{ customer.limitid }}
+    </div>
+    <div id="employee-limit-limittype">
+        <i class="
+            {% if customer.limitid.limittype == 'money' %} 
+                money bill alternate 
+            {% else %} 
+                boxes 
+            {% endif %} 
+        icon"></i>
+        {{ (
+            'artesanik_sylius_employee.ui.limittype.'
+             ~ 
+             customer.limitid.limittype)
+             |
+             trans({'%limitvalue%': customer.limitid.limitvalue|number_format}
+            ) | raw
+        }}
+        
+    </div>
+    <div id="employee-limit-limitperiodicity">
+        <i class="hourglass half icon"></i>
+        {{'artesanik_sylius_employee.ui.periodicity_description'|
+            trans({
+                '%periodicityvalue%' :
+                (
+                'artesanik_sylius_employee.ui.periodicity.'
+                ~ 
+                customer.limitid.periodicity)
+                |
+                trans
+            }) | raw
+        }}
+    </div>
+    <div id="employee-limit-channel">
+        <i class="shopping basket icon"></i>
+        {{ 'sylius.ui.channel'|trans }}: <div class="ui blue label">{{ customer.limitid.channel }}</div>
+    </div>
+{% endif %}
+</div>

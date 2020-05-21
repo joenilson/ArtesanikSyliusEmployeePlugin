@@ -1,9 +1,68 @@
-## YAML Template.
----
-artesanik_sylius_employee_plugin:
+artesanik_sylius_employee:
     ui:
+        limits: Purchase Employee Limits
+        limit: Purchase Employee Limit
+        limit_label: Limit
+        limit_applied: You have a purchase limit applied
+        limit_exceeded: You have reached the limit, some adjustments have been to your shopping cart, the original value was %original_value%, the new value is %new_value%.
+        not_black: Field can't be blank
+        min_length: Field min lenght must be %s
+        max_length: Field max lenght must be %s
+        your_expenses: Your Expenses
+        limittype_money: in Money
+        limittype_quantity: in Quantity
+        limittype:
+            money: The limit is for a max purchase amount up to <div class="ui blue label">%limitvalue%</div>
+            quantity: The limit is for a max purchase quantity up to <div class="ui blue label">%limitvalue%</div> items
+        show_employees: Show Employees
+        assign_employees: Assign Employees
+        employee_limit_summary: Limit Information
+        employee_limit_header: Limit
+        employee_limits_header: Limits
+        employee_limits_false: You don't have limits to purchases
         employee_id: Employee Id
         employee_office: Office
         employee_position: Position
+        employee_department: Department
         employee_company: Company
         employee_information: Employee Information
+        employee_limitpurchase: Purchase Limit
+        employee_limittype: Limit Type
+        employee_limitchannel: Channel
+        employee_limitperiodicity: Periodicity
+        employee_limitisactive: Active
+        employee_limitvalue: Limit Value
+        employee_limitexcluded: Excluded from Limit?
+        employee_limitcreatedat: Record created at
+        employee_limitmodifiedat: Record modified at
+        employee_limitid: Limit Id
+        employee_limitdescription: Description
+        employee_limitid_choose: Choose a Limit 
+        employee_limitchannel_choose: Choose your Channel 
+        employee_limitperiodicity_choose: Choose your Periodicity 
+        admin_header: Employee Limit Purchase
+        admin_subheader: Purchase employees limits admin page
+        admin_mapping_header: Employee Limit Purchase Mapping
+        admin_mapping_subheader: Purchase employees limit mappings
+        admin_assign_header: Employee Limit Purchase Assign
+        admin_assign_subheader: Purchase employees limit Assigns
+        select_limitid: Choose a Limit
+        showmapping: Show Mapping
+        removemapping: Remove
+        assignmapping: Assign
+        mapping: Mapping
+        mappings: Mappings
+        assign: Assign
+        assigns: Assigns
+        info_empty_mapping: There is no employees mapped to this limit, please assign someone.
+        info_success_mapping: Customers mapped to the Limit succesfully
+        periodicity_description: This limit have a <div class="ui blue label">%periodicityvalue%</div> scheduled control 
+        periodicity:
+            daily: Daily
+            weekly: Weekly
+            biweekly: Biweekly
+            monthly: Monthly
+            bimonthly: Bi Monthly
+            quarterly: Quarterly
+            biannual: Biannual
+            annual: Annual

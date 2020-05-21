@@ -1,0 +1,2 @@
+artesanik_sylius_employee_plugin:
+    resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/routes.yml"

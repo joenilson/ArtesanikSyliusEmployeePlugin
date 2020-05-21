@@ -1,0 +1,12 @@
+Artesanik\SyliusEmployeePlugin\Entity\Employee\Limit:
+    properties:
+        description:
+            - NotBlank:
+                message: artesanik_sylius_employee.ui.not_blank
+                groups: [artesanik_sylius_employee_limit_vg]
+            - Length:
+                min: 5
+                minMessage: artesanik_sylius_employee.ui.min_length
+                max: 120
+                maxMessage: artesanik_sylius_employee.ui.max_length
+                groups: [artesanik_sylius_employee_limit_vg]

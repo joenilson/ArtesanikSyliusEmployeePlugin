@@ -1,0 +1,232 @@
+sylius_grid:
+    templates:
+        action:
+            showMapping: "@ArtesanikSyliusEmployeePlugin/Grid/Action/show.html.twig"
+            removeMapping: "@ArtesanikSyliusEmployeePlugin/Grid/Action/removeMapping.html.twig"
+            assignMapping: "@ArtesanikSyliusEmployeePlugin/Grid/Action/assignMapping.html.twig"
+        bulk_action:
+            removeMapping: "@ArtesanikSyliusEmployeePlugin/Grid/Action/removeMapping.html.twig"
+            bulkAssignMapping: "@ArtesanikSyliusEmployeePlugin/Grid/Action/bulkAssignMapping.html.twig"
+    grids:
+        sylius_admin_customer:
+            filters:
+                search:
+                    type: string
+                    label: false
+                    options: 
+                        fields: [username,  employeeid, position, department, office, company]
+                    form_options:
+                        type: contains
+            fields:
+                employeeid:
+                    label: artesanik_sylius_employee.ui.employee_id
+                    type: string
+                    position: 0
+                position:
+                    label: artesanik_sylius_employee.ui.employee_position
+                    type: string
+                    position: 6
+                department:
+                    label: artesanik_sylius_employee.ui.employee_department
+                    type: string
+                    position: 7
+                office:
+                    label: artesanik_sylius_employee.ui.employee_office
+                    type: string
+                    position: 8
+                limitpurchase:
+                    type: twig
+                    label: artesanik_sylius_employee.ui.employee_limitpurchase
+                    options:
+                        template: SyliusUiBundle:Grid/Field:yesNo.html.twig
+                    position: 9
+                limitid:
+                    type: string
+                    label: artesanik_sylius_employee.ui.employee_limitid
+                limitexcluded:
+                    type: twig
+                    label: artesanik_sylius_employee.ui.employee_limitexcluded
+                    options:
+                        template: SyliusUiBundle:Grid/Field:yesNo.html.twig
+        artesanik_sylius_employee_plugin_admin_mapping_grid:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%sylius.model.customer.class%"
+                    repository:
+                        method: findAllByLimitid
+                        arguments: 
+                            limitid: $id
+            fields:
+                employeeid:
+                    type: string
+                    label: artesanik_sylius_employee.ui.employee_id
+                user:
+                    type: string
+                firstname:
+                    type: string
+                lastname:
+                    type: string
+                limitid:
+                    type: string
+                    label: artesanik_sylius_employee.ui.employee_limitid
+                position:
+                    label: artesanik_sylius_employee.ui.employee_position
+                    type: string
+                department:
+                    label: artesanik_sylius_employee.ui.employee_department
+                    type: string
+                office:
+                    label: artesanik_sylius_employee.ui.employee_office
+                    type: string
+                company:
+                    label: artesanik_sylius_employee.ui.employee_company
+                    type: string
+            actions:
+                main:
+                    assignMapping:
+                        type: assignMapping
+                        label: artesanik_sylius_employee.ui.assignmapping
+                        options:
+                            link:
+                                route: artesanik_sylius_employee_admin_assign_index
+                                parameters:
+                                    limitid: $id
+                item:
+                    removeMapping:
+                        type: removeMapping
+                        label: artesanik_sylius_employee.ui.removemapping
+                        options:
+                            link:
+                                route: artesanik_sylius_employee_admin_mapping_index
+                                parameters:
+                                    id: $id
+                # bulk:
+                #     removeMapping:
+                #         type: removeMapping
+                #         options:
+                #             link:
+                #                 route: artesanik_sylius_employee_admin_mapping_index
+                #                 parameters:
+                #                     id: resource.limitid
+        artesanik_sylius_employee_plugin_admin_assign_grid:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%sylius.model.customer.class%"
+                    repository:
+                        method: findAllByNoLimitid
+            fields:
+                employeeid:
+                    type: string
+                    label: artesanik_sylius_employee.ui.employee_id
+                user:
+                    type: string
+                firstname:
+                    type: string
+                lastname:
+                    type: string
+                limitid:
+                    type: string
+                    label: artesanik_sylius_employee.ui.employee_limitid
+                position:
+                    label: artesanik_sylius_employee.ui.employee_position
+                    type: string
+                department:
+                    label: artesanik_sylius_employee.ui.employee_department
+                    type: string
+                office:
+                    label: artesanik_sylius_employee.ui.employee_office
+                    type: string
+                company:
+                    label: artesanik_sylius_employee.ui.employee_company
+                    type: string
+            actions:
+                bulk:
+                    bulkAssignMapping:
+                        type: delete
+                        label: artesanik_sylius_employee.ui.assignmapping
+                        options:
+                            link:
+                                route: artesanik_sylius_employee_admin_mapping_create
+                                parameters:
+                                    limitid: $limitid
+                                    _methodMapping: 'ASSIGN'
+                                    ids: [$ids]
+        artesanik_sylius_employee_plugin_admin_limit:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%artesanik_sylius_employee.model.limit.class%"
+            fields:
+                id:
+                    type: string
+                    label: artesanik_sylius_employee.ui.employee_limitid
+                description:
+                    type: string
+                    label: artesanik_sylius_employee.ui.employee_limitdescription
+                limittype:
+                    type: twig
+                    label: artesanik_sylius_employee.ui.employee_limittype
+                    options:
+                        template: '@ArtesanikSyliusEmployeePlugin\Grid/Field/limittype.html.twig'
+                limitvalue:
+                    type: string
+                    label: artesanik_sylius_employee.ui.employee_limitvalue
+                channel:
+                    type: string
+                    label: artesanik_sylius_employee.ui.employee_limitchannel
+                periodicity:
+                    type: twig
+                    label: artesanik_sylius_employee.ui.employee_limitperiodicity
+                    options:
+                        template: '@ArtesanikSyliusEmployeePlugin\Grid/Field/limitperiodicity.html.twig'
+                isactive:
+                    type: twig
+                    label: artesanik_sylius_employee.ui.employee_limitisactive
+                    options:
+                        template: SyliusUiBundle:Grid/Field:yesNo.html.twig
+            filters:
+                description:
+                    type: string
+                    label: artesanik_sylius_employee.ui.employee_limitdescription
+                limittype:
+                    type: select
+                    label: artesanik_sylius_employee.ui.employee_limittype
+                    form_options:
+                        choices:
+                            artesanik_sylius_employee.ui.limitytype_money: money
+                            artesanik_sylius_employee.ui.limitytype_quantity: quantity
+                limitvalue:
+                    type: string
+                    label: artesanik_sylius_employee.ui.employee_limitvalue
+                channel:
+                    type: entity
+                    form_options:
+                        class: "%sylius.model.channel.class%"
+                    label: artesanik_sylius_employee.ui.employee_limitchannel
+                isactive:
+                    type: boolean
+                    label: artesanik_sylius_employee.ui.employee_limitisactive
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    showMapping:
+                        type: showMapping
+                        label: sylius.ui.show
+                        enabled: true
+                        options:
+                            link:
+                                route: artesanik_sylius_employee_admin_mapping_index
+                                parameters:
+                                    id: resource.id
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+                bulk:
+                    delete:
+                        type: delete
+            limits: [20, 50, 100]

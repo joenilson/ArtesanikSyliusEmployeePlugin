@@ -1,0 +1,28 @@
+{% extends '@SyliusAdmin/layout.html.twig' %}
+
+{% block title %}{{ 'artesanik_sylius_employee.ui.limits'|trans }} {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+{{ parent() }}
+<div class="ui stackable two column grid">
+    <div class="column">
+        <h1 class="ui header">
+            <i class="circular plus icon"></i>
+            <div class="content">{{ 'artesanik_sylius_employee.ui.limits'|trans }}</div>
+        </h1>
+        {% include '@ArtesanikSyliusEmployeePlugin/Block/_breadcrumb.html.twig' %}
+    </div>
+</div>
+{% endblock %}
+
+{# {% if definition.actionGroups.bulk is defined and definition.getEnabledActions('bulk')|length > 0 %}
+    <td class="center aligned"><input class="bulk-select-checkbox" form="bulk-{{ definition.getEnabledActions('bulk')|first.name }}" type="checkbox" name="ids[]" value="{{ row.id }}" /></td>
+{% endif %} #}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

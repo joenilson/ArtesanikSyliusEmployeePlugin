@@ -1,0 +1,4 @@
+services:
+    winzou\Bundle\StateMachineBundle\Command\winzouStateMachineDebugCommand:
+        tags:
+            - { name: console.command }
