@@ -25,6 +25,10 @@ It has two translations:
 
 More translations are welcome as PR.
 
+It have a top limit control, you can create Limits in money or quantity and apply to the employees.
+
+And you can put an employee excluded from the limit, all this from the admin dashboard.
+
 ## Installation
 
 1. Require plugin with composer
@@ -64,9 +68,10 @@ bin/console doctrine:migrations:migrate
 ```
 
 
+## COMPLETED
+- [X] Add employee purchase budget [v0.3]
 
 ## TODO
 
 - [ ] Add EmployeeId to Order
-- [ ] Add employee purchase budget
 - [ ] Add compatibility with SyliusLdapPlugin
