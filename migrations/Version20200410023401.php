@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200410023400 extends AbstractMigration
+final class Version20200410023401 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -24,11 +24,11 @@ final class Version20200410023400 extends AbstractMigration
                 . 'channel INT DEFAULT NULL, '
                 . 'description VARCHAR(120) CHARACTER SET utf8 NOT NULL COLLATE `utf8_unicode_ci`, '
                 . 'limittype VARCHAR(32) CHARACTER SET utf8 NOT NULL COLLATE `utf8_unicode_ci`, '
-                . 'limitvalue NUMERIC(18, 4) DEFAULT \'NULL\', '
+                . 'limitvalue NUMERIC(18, 4) DEFAULT \'0\', '
                 . 'periodicity VARCHAR(32) CHARACTER SET utf8 NOT NULL COLLATE `utf8_unicode_ci`, '
                 . 'isactive TINYINT(1) NOT NULL, '
                 . 'createdat DATETIME NOT NULL, '
-                . 'modifiedat DATETIME DEFAULT \'NULL\', '
+                . 'modifiedat DATETIME, '
                 . 'INDEX IDX_4BA14FE2A2F98E47 (channel), '
                 . 'PRIMARY KEY(id)) '
                 . 'DEFAULT CHARACTER SET utf8 COLLATE `utf8_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
