@@ -45,7 +45,7 @@ Artesanik\SyliusEmployeePlugin\ArtesanikSyliusEmployeePlugin::class => ['all' =>
 ....
 ```
 
-3. create a file sylius_employee_plugin.yaml 
+3. create a file sylius_employee_plugin.yaml in config/packages
 
 ```
 cd config/packages
@@ -53,19 +53,42 @@ touch sylius_employee_plugin.yaml
 nano sylius_employee_plugin.yaml
 ```
 
-- and put this line inside:
+- and put this lines inside:
 
 ```
 imports:
     - { resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/config.yml" }
 ```
 
-4. Copy plugin migrations to your migrations directory (e.g. src/Migrations) and apply them to your database:
+4. create a file sylius_employee_plugin.yaml in config/routes
+
+```
+cd config/routes
+touch sylius_employee_plugin.yaml
+nano sylius_employee_plugin.yaml
+```
+
+- and put this lines inside
+
+```
+artesanik_sylius_employee_plugin:
+    resource: "@ArtesanikSyliusEmployeePlugin/Resources/config/routes.yml"
+```
+
+5. Copy plugin migrations to your migrations directory (e.g. src/Migrations) and apply them to your database:
 
 ```
 cp -R vendor/artesanik/sylius-employee-plugin/migrations/* src/Migrations
 bin/console doctrine:migrations:migrate
 ```
+
+remember to make a 
+
+```
+bin/console cache:clear
+```
+
+At the end of the install
 
 
 ## COMPLETED

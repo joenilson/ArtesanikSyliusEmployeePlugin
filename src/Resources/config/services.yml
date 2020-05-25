@@ -1,6 +1,8 @@
 parameters:
     artesanik_sylius_employee_plugin.form.type.limit.validation_groups: [ 'artesanik_sylius_employee_limit_vg' ]
 services:
+    artesanik_sylius_employee_plugin.repository.customer:
+        class: Artesanik\SyliusEmployeePlugin\Repository\CustomerRepository
     artesanik_sylius_employee_plugin.block_event_listener.admin.layout.javascripts:
         class: Sylius\Bundle\UiBundle\Block\BlockEventListener
         arguments:
@@ -68,7 +70,7 @@ services:
             - '@session'
     artesanik_sylius_employee_plugin.controller.limit:
         class: Artesanik\SyliusEmployeePlugin\Controller\LimitController
-        autowire: true
+        autowire: false
         public: true
             - '@twig'
             - '@sylius.repository.customer'
@@ -87,4 +89,3 @@ services:
         tags:
             - { name: kernel.event_listener, event: sylius.order_item.post_add, method: onSuccessfulAddToCart }
             - { name: kernel.event_listener, event: sylius.cart_change, method: onCartUpdate }
-            
