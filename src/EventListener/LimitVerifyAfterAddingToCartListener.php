@@ -139,7 +139,7 @@ final class LimitVerifyAfterAddingToCartListener
             return $orderItem->getQuantity();
         }
         
-        if($limit->getChannel() === $channel) {
+        if(strcmp($limit->getChannel(), $channel) == 0) {
             return $this->validateLimitTypeControl($limit, $limitBalance, $order, $orderItem);
         }
     }
