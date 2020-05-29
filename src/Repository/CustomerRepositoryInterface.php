@@ -25,9 +25,9 @@ declare(strict_types=1);
 
 namespace Artesanik\SyliusEmployeePlugin\Repository;
 
+use Artesanik\SyliusEmployeePlugin\Entity\Customer\CustomerInterface;
 use Sylius\Component\Core\Repository\CustomerRepositoryInterface as BaseCustomerRepositoryInterface;
 use Doctrine\ORM\QueryBuilder;
-use Sylius\Component\Channel\Model\ChannelInterface;
 
 /**
  *
@@ -36,11 +36,18 @@ use Sylius\Component\Channel\Model\ChannelInterface;
 interface CustomerRepositoryInterface extends BaseCustomerRepositoryInterface
 {
     /**
+     * Find Customers by the limit mapped
      *
-     * @param string $limitid
+     * @param string $limitId
      *
      * @return QueryBuilder
      */
-    public function findAllByLimitid(string $limitid);
+    public function findAllByLimitid(string $limitId);
+
+    /**
+     * Select customers without an limit assigned
+     *
+     * @return QueryBuilder
+     */
     public function findAllByNoLimitid();
 }

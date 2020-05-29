@@ -13,8 +13,6 @@ use Artesanik\SyliusEmployeePlugin\Repository\CustomerRepository;
 use Artesanik\SyliusEmployeePlugin\Repository\Employee\LimitRepository;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Sylius\Bundle\OrderBundle\Controller\OrderItemController;
-
 
 final class LimitController extends ResourceController
 {
@@ -58,7 +56,7 @@ final class LimitController extends ResourceController
         $this->eventDispatcher->dispatch(ResourceActions::SHOW, $configuration, $limit);
 
         $view = View::create($limit);
-        
+
         if ($configuration->isHtmlRequest()) {
             $view
                 ->setTemplate('@ArtesanikSyliusEmployeePlugin/Admin'.(ResourceActions::SHOW . '.html'))
@@ -75,18 +73,16 @@ final class LimitController extends ResourceController
         return $this->viewHandler->handle($configuration, $view);
     }
 
-    public function limitBalanceAction(Request $request)
+    public function limitBalanceAction(Request $request): Response
     {
         $customer = $request->get('customer');
         $channel = $this->get('sylius.context.channel')->getChannel();
         $expenses = $this->customerRepository->countOrderItemsByLimit($channel, $customer);
-        return new Response(
-            $this->twig->render(
-                '@ArtesanikSyliusEmployeePlugin/Customer/Show/Employee/Summary/_limitBalance.html.twig',
-                [
-                    'expenses' => $expenses
-                ]
-            )
+        return $this->render(
+            '@ArtesanikSyliusEmployeePlugin/Customer/Show/Employee/Summary/_limitBalance.html.twig',
+            [
+                'expenses' => $expenses
+            ]
         );
     }
 }

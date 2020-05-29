@@ -26,15 +26,8 @@ declare(strict_types=1);
 
 namespace Artesanik\SyliusEmployeePlugin\Repository;
 
-use InvalidArgumentException;
-use RuntimeException;
 use Sylius\Bundle\CoreBundle\Doctrine\ORM\CustomerRepository as BaseCustomerRepository;
 use Sylius\Component\Channel\Model\Channel;
-use Artesanik\SyliusEmployeePlugin\Entity\Customer\Customer;
-use Artesanik\SyliusEmployeePlugin\Entity\Customer\CustomerInterface;
-use Artesanik\SyliusEmployeePlugin\Repository\OrderRepository;
-use Sylius\Component\Order\Model\OrderItem;
-use Doctrine\ORM\QueryBuilder;
 
 /**
  * Extended CustomerRepository
@@ -42,18 +35,10 @@ use Doctrine\ORM\QueryBuilder;
  * @package Artesanik\SyliusEmployeePlugin\Repository
  *
  */
-class CustomerRepository extends BaseCustomerRepository
+class CustomerRepository extends BaseCustomerRepository implements CustomerRepositoryInterface
 {
-    /**
-     * Find Customers by the limit mapped
-     *
-     * @param string $limit
-     *
-     * @return CustomerInterface[]
-     * @throws InvalidArgumentException
-     * @throws RuntimeException
-     */
-    public function findAllByLimitid(string $limitid)
+    /** {@inheritDoc} */
+    public function findAllByLimitid(string $limitId)
     {
         $query = $this->createQueryBuilder('o')
             ->leftJoin(
@@ -63,19 +48,12 @@ class CustomerRepository extends BaseCustomerRepository
                 'o.limitid = sel.id'
             )
             ->where('o.limitid = :limitid')
-            ->setParameter('limitid', $limitid)
+            ->setParameter('limitid', $limitId)
             ->addOrderBy('o.email', 'ASC');
         return $query;
     }
 
-    /**
-     * Select customers without an limit assigned
-     *
-     * @return QueryBuilder
-     *
-     * @throws InvalidArgumentException
-     * @throws RuntimeException
-     */
+    /** {@inheritDoc} */
     public function findAllByNoLimitid()
     {
         $query = $this->createQueryBuilder('o')
@@ -128,7 +106,7 @@ class CustomerRepository extends BaseCustomerRepository
             $query[0]['result'] = 0;
         }
         $expenses = $this->infoExpense($query[0]['result'], $limits->getLimitvalue(), $limits->getLimittype());
-        return ['result' => $expenses['orderItems'], 
+        return ['result' => $expenses['orderItems'],
             'color' => $expenses['color'],
             'limitvalue' => $limits->getLimitvalue()];
     }
@@ -136,7 +114,7 @@ class CustomerRepository extends BaseCustomerRepository
     private function infoExpense($orderItems, $limit, $limittype)
     {
         $orderItems = ($limittype == 'quantity') ? $orderItems : ($orderItems / 100);
-        
+
         $expense = ($orderItems / $limit)*100;
         $color = 'black';
         switch (true) {
