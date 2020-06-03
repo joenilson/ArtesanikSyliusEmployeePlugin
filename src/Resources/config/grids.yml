@@ -101,14 +101,6 @@ sylius_grid:
                                 route: artesanik_sylius_employee_admin_mapping_index
                                 parameters:
                                     id: $id
-                # bulk:
-                #     removeMapping:
-                #         type: removeMapping
-                #         options:
-                #             link:
-                #                 route: artesanik_sylius_employee_admin_mapping_index
-                #                 parameters:
-                #                     id: resource.limitid
         artesanik_sylius_employee_plugin_admin_assign_grid:
             driver:
                 name: doctrine/orm
